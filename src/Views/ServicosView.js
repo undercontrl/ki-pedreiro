@@ -1,16 +1,14 @@
-import Servicos from '../Controllers/Servicos.js';
 class ServicosView{
-    constructor(){
-        this.servicos = new Servicos();
+    constructor(servicos){
+        this.servicos = servicos;
     }
     renderizar(){
-        const servicos = this.servicos.listar();
-        const container = document.createElement('div');
-        container.classList.add('servicos-container');
-        servicos.forEach(servico => {
-            container.innerHTML += `<div> ${servico.nome} - ${servico.preço} </div><br/>`
+        const Servicos = this.servicos.listar();
+        let container = '<div class="container">';
+        Servicos.forEach(servico => {
+            container += `<div> ${servico.nome} - ${servico.preço} </div><br/>`
         });
-        return container.innerHTML;
+        return container;
     }
 }
 export default ServicosView;

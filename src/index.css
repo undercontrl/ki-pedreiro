@@ -1,3 +1,15 @@
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background: #333; color: white; }
+}
+
+@media (prefers-color-scheme: light) {
+  body { background: #ddd; color: black; }
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
@@ -29,4 +41,47 @@ button{
   color: white;
   border: 2px rgb(39, 80, 227) solid;
   cursor: pointer;
+}
+
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+ul li a{
+  text-decoration: none;
+  color: #333;
+  border: solid 1px #ccc;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  box-shadow: 1px 4px #ccc;
+  transform: translateY(0);
+}
+
+ul li a:active{
+  box-shadow: none;
+  transform: translateY(4px);
+  transition: all 0.2s ease;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
