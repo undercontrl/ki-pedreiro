@@ -48,7 +48,12 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9782066e4fdb4131ffd81ea12ac400eb01289969
 ipcMain.handle('dark-mode:toggle', () => {
   if (nativeTheme.shouldUseDarkColors) {
     nativeTheme.themeSource = 'light'
@@ -56,7 +61,11 @@ ipcMain.handle('dark-mode:toggle', () => {
     nativeTheme.themeSource = 'dark'
   }
   return nativeTheme.shouldUseDarkColors
+<<<<<<< HEAD
 });
+=======
+})
+>>>>>>> 9782066e4fdb4131ffd81ea12ac400eb01289969
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
