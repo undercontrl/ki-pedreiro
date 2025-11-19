@@ -17,7 +17,7 @@ const createWindow = () => {
     width: 1200,
     height: 600,
     transparent: false,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     resizable: true,
     fullscreen: false,
     frame: true,
@@ -63,14 +63,16 @@ app.whenReady().then(() => {
     return nativeTheme.shouldUseDarkColors
   });
   
+ 
+
+  ipcMain.handle("usuarios:cadastrar", async (event, usuario)=> {
+    const resultado = await controllerUsuario.cadastrar(usuario);
+    return resultado;
+  });
+
   ipcMain.handle("usuarios:listar", async ()=> {
     return await controllerUsuario.listar();
   });
-
-  ipcMain.handle("usuarios:cadastrar", async (event, usuario)=> {
-    return await controllerUsuario.cadastrar(usuario);
-  });
-
 
 });
 

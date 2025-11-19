@@ -4,12 +4,15 @@ class UsuarioController{
         this.usuarioModel = new Usuarios();
     }
     async listar(){
-        const dados = await window.usuarioModel.listar();
+        const dados = await this.usuarioModel.listar();
         console.log('dados no controller', dados);
         return dados
         // return await this.usuarioModel.listar();
     }
     async cadastrar(usuario){
+        if(!usuario.nome || !usuario.idade){
+            return false;
+        }
         this.usuarioModel.adicionar(usuario);
         return true;
     }
