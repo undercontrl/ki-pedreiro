@@ -19,7 +19,7 @@ class UsuarioController{
         if(!usuario.nome || !usuario.idade){
             return false;
         }
-        const usuarioExistente = await this.usuarioModel.buscarPorId(usuario.id);
+        const usuarioExistente = await this.usuarioModel.buscarPorId(usuario.uuid);
         if(!usuarioExistente){
             return false;
         }
@@ -32,6 +32,15 @@ class UsuarioController{
             return false
         }
        return this.usuarioModel.buscarPorId(id)
+    }
+
+    async removerUsuario(uuid){
+        const usuarioExistente = await this.usuarioModel.buscarPorId(uuid);
+        if(!usuarioExistente){
+            return false;
+        }
+        const resultado = await this.usuarioModel.remover(usuarioExistente);
+        return resultado
     }
 
 }

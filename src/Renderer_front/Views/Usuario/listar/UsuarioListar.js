@@ -20,16 +20,25 @@ class UsuarioListar{
             if(e.target.classList.contains("editar-user")){
                 console.log("editar usuario id:", idUsuario);
                 const usuario = await window.api.buscarporid(idUsuario)
-                 const id = document.getElementById("id")
+                const id = document.getElementById("id")
                 const nome = document.getElementById("nome")
                 const idade = document.getElementById("idade")
-                id.value = usuario.id
+                id.value = usuario.uuid
                 nome.value = usuario.nome
                 idade.value = usuario.idade
                 this.view.abrirModal();
             }
              if(e.target.classList.contains("excluir-user")){
-                console.log("remover usuario id:", idUsuario);
+                const resultado = await window.api.removerUsuario(idUsuario);
+                if(resultado){
+                    this.mensagem.sucesso("Excluído com sucesso!");
+                    setTimeout(async()=>{
+                        this.app.innerHTML = await this.renderizarLista();
+                    },1500)
+                    location.hash = "#usuario_listar"
+                }else{
+                    this.mensagem.erro("Erro ao remover!");
+                }
             }
             if(e.target.classList.contains("close")){
                 this.view.fecharModal();
@@ -43,7 +52,7 @@ class UsuarioListar{
             const nome = document.getElementById('nome');
             const idade = document.getElementById('idade');
             const usuario = {
-                id: id.value,
+                uuid: id.value,
                 nome: nome.value,
                 idade: idade.value
             }
@@ -52,13 +61,12 @@ class UsuarioListar{
            if(resultado){
              nome.value = '';
              idade.value = '';
-             this.mensagem.sucesso();
+             this.mensagem.sucesso("Atualizado com sucesso!");
            }else{
-             this.mensagem.erro();
+             this.mensagem.erro("Erro ao atualizar");
            }
             
         })
-
 
     }
 

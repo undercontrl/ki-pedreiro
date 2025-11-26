@@ -20,19 +20,18 @@ class UsuariosView{
                             </tr>`;
         Usuarios.forEach(usuario => { // data = atributto
             container += `<tr><td> ${usuario.nome} </td><td> ${usuario.idade} </td><td> 
-            <button class="editar-user" data-id="${usuario.id}">Editar</button>
-            <button class="excluir-user" data-id="${usuario.id}">Excluir</button> </td><tr>`
+            <button class="editar-user" data-id="${usuario.uuid}">Editar</button>
+            <button class="excluir-user" data-id="${usuario.uuid}">Excluir</button> </td><tr>`
         });
         container += `</table></div>
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="fechar">&times;</span>
                 <form id="form-usuario">
-                    <input type="text" id="id" hidden/>
-                    <label>Nome:</label>
-                    <input type="text" id="nome"/>
-                    <label>Idade:</label>
-                    <input type="number" id="idade"/>
+                    <h2 class="titulo-form-modal">Adicionar Usuário</h2>
+                    <input type="text" id="id" hidden placeholder="ID"/>
+                    <input type="text" id="nome" placeholder="Nome"/>
+                    <input type="number" id="idade" placeholder="Idade"/>
                     <button>Salvar</button>
                 </form>
             </div>
@@ -44,10 +43,9 @@ class UsuariosView{
     }
     renderizarFomulario(){
         return `<form id="form-usuario">
-                    <label>Nome:</label>
-                    <input type="text" id="nome"/>
-                    <label>Idade:</label>
-                    <input type="number" id="idade"/>
+                    <h2 class="titulo-form">Adicionar Usuário</h2>
+                    <input type="text" id="nome" placeholder="Nome"/>
+                    <input type="number" id="idade" placeholder="Idade"/>
                     <button>Salvar</button>
                 </form>`
 
