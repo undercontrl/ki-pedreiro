@@ -7,10 +7,6 @@ class UsuarioController{
         const dados = await this.usuarioModel.listar();
         console.log('dados no controller', dados);
         return dados
-<<<<<<< HEAD
-=======
-        // return await this.usuarioModel.listar();
->>>>>>> 8c9d4ed323edd566bd982517213d34adfde82106
     }
     async cadastrar(usuario){
         if(!usuario.nome || !usuario.idade){
@@ -19,7 +15,6 @@ class UsuarioController{
         this.usuarioModel.adicionar(usuario);
         return true;
     }
-<<<<<<< HEAD
     async atualizarUsuario(usuario){
         if(!usuario.nome || !usuario.idade){
             return false;
@@ -48,7 +43,5 @@ class UsuarioController{
         return resultado
     }
 
-=======
->>>>>>> 8c9d4ed323edd566bd982517213d34adfde82106
 }
 export default UsuarioController;
