@@ -3,12 +3,11 @@ class ServicosView{
         this.servicos = servicos;
     }
     renderizar(){
-        const servicos = this.servicos.listar();
-        let container ='<div class="container">';
-        servicos.forEach(servico => {
+        const Servicos = this.servicos.listar();
+        let container = '<div class="container">';
+        Servicos.forEach(servico => {
             container += `<div> ${servico.nome} - ${servico.preço} </div><br/>`
         });
-        container += '</div>';
         return container;
     }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import db from "../Database/db.js";
 import crypto from 'node:crypto';
 class Usuarios {
@@ -45,6 +46,26 @@ class Usuarios {
       sync_status = 0 WHERE uuid = ?`);
       const info = stmt.run(usuario.uuid)
       return info.changes > 0 ? true : false;
+=======
+class Usuarios {
+  constructor() {
+    this.Usuarios = [
+      {"nome": "jose", "idade": 26},
+      {"nome": "maria", "idade": 35},
+    ];
+  }
+  adicionar(usuario) {
+    this.Usuarios.push(usuario);
+  }
+  async listar() {
+    return this.Usuarios;
+  }
+  remover(usuario) {
+    const index = this.Usuarios.indexOf(usuario);
+    if (index !== -1) {
+      this.Usuarios.splice(index, 1);
+    }
+>>>>>>> 8c9d4ed323edd566bd982517213d34adfde82106
   }
 }
 export default Usuarios;

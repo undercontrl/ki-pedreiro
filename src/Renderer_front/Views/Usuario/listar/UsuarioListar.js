@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import UsuariosView from "../UsuariosView.js"
 import MensagemDeAlerta from "../../../Services/MensagemDeAlerta.js" 
 class UsuarioListar{
@@ -76,3 +77,17 @@ class UsuarioListar{
 
 }
 export default UsuarioListar;
+=======
+import UsuariosView from "../UsuariosView";
+class UsuarioListar{
+    constructor(){
+        this.view = new UsuariosView();
+    }
+    async renderizarLista(){
+        const dados = await window.api.listar();
+        console.log('dados na usuario lista', dados);
+        return this.view.renderizarLista(dados);
+    }
+}
+export default UsuarioListar;
+>>>>>>> 8c9d4ed323edd566bd982517213d34adfde82106
