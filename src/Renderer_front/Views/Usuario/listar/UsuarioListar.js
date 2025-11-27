@@ -4,7 +4,6 @@ class UsuarioListar{
     constructor(){
         this.view = new UsuariosView();
         this.mensagem = new MensagemDeAlerta();
-        this.app = document.getElementById("app");
     }
    async renderizarLista(){
         const dados = await window.api.listar();
@@ -15,7 +14,12 @@ class UsuarioListar{
        return this.view.renderizarLista(dados)
     }
     adicionarEventos(){
-        this.app.addEventListener("click", async (e)=>{
+        const btnFechar = document.getElementById("fechar");
+        btnFechar.addEventListener("click",()=>{
+            this.view.fecharModal();
+        })
+        const container = document.getElementById("container");
+        container.addEventListener("click", async (e)=>{
             const idUsuario = e.target.getAttribute("data-id");
             if(e.target.classList.contains("editar-user")){
                 console.log("editar usuario id:", idUsuario);
@@ -33,7 +37,7 @@ class UsuarioListar{
                 if(resultado){
                     this.mensagem.sucesso("Excluído com sucesso!");
                     setTimeout(async()=>{
-                        this.app.innerHTML = await this.renderizarLista();
+                        document.getElementById("app").innerHTML = await this.renderizarLista();
                     },1500)
                     location.hash = "#usuario_listar"
                 }else{

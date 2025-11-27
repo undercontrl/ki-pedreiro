@@ -13,7 +13,7 @@ class UsuariosView{
 
 
     renderizarLista(Usuarios){
-        let container = `<div style="overflow-x:auto;">
+        let container = `<div style="overflow-x:auto;" id="container"><h2>Lista de Usuários</h2>
                             <table>
                             <tr>
                               <th>Nome</th><th>Idade</th><th>ações</th>
@@ -24,21 +24,19 @@ class UsuariosView{
             <button class="excluir-user" data-id="${usuario.uuid}">Excluir</button> </td><tr>`
         });
         container += `</table></div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close" id="fechar">&times;</span>
-                <form id="form-usuario">
-                    <h2 class="titulo-form-modal">Adicionar Usuário</h2>
-                    <input type="text" id="id" hidden placeholder="ID"/>
-                    <input type="text" id="nome" placeholder="Nome"/>
-                    <input type="number" id="idade" placeholder="Idade"/>
-                    <button>Salvar</button>
-                </form>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="fechar">&times;</span>
+                    <form id="form-usuario">
+                        <h2 class="titulo-form-modal">Adicionar Usuário</h2>
+                        <input type="text" id="id" hidden placeholder="ID"/>
+                        <input type="text" id="nome" placeholder="Nome"/>
+                        <input type="number" id="idade" placeholder="Idade"/>
+                        <button>Salvar</button>
+                    </form>
+                </div>
             </div>
-        </div>
-
-        
-        `;
+            `;
         return container;
     }
     renderizarFomulario(){
