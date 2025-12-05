@@ -3,17 +3,15 @@ import path from 'node:path';
 import started from 'electron-squirrel-startup';
 import UsuarioController from './Main_back/Controllers/UsuarioController.js';
 import ServicoController from './Main_back/Controllers/ServicoController.js';
-<<<<<<< HEAD
 import { initDatabase } from './Main_back/Database/db.js';
-=======
-
->>>>>>> 8c9d4ed323edd566bd982517213d34adfde82106
+import APIFetch from './Main_back/Services/APIFetch.js';
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
   app.quit();
 }
 const controllerUsuario = new UsuarioController();
 const controllerServico = new ServicoController();
+const apiremoto = new APIFetch()
 
 const createWindow = () => {
   // Create the browser window.
@@ -57,28 +55,11 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
-  //dark mode
-  ipcMain.handle('dark-mode:toggle', () => {
-    if (nativeTheme.shouldUseDarkColors) {
-      nativeTheme.themeSource = 'light'
-    } else {
-      nativeTheme.themeSource = 'dark'
-    }
-    return nativeTheme.shouldUseDarkColors
-  });
-  
- 
-
-  ipcMain.handle("usuarios:cadastrar", async (event, usuario)=> {
-    const resultado = await controllerUsuario.cadastrar(usuario);
-    return resultado;
-  });
 
   ipcMain.handle("usuarios:listar", async ()=> {
     return await controllerUsuario.listar();
   });
 
-<<<<<<< HEAD
 ipcMain.handle('dark-mode:toggle', () => {
   if (nativeTheme.shouldUseDarkColors) {
     nativeTheme.themeSource = 'light'
@@ -90,10 +71,6 @@ ipcMain.handle('dark-mode:toggle', () => {
 
 ipcMain.handle("usuarios:buscarPorId", async (event, id) => {
   return await controllerUsuario.buscarUsuarioPorId(id);
-})
-
-ipcMain.handle("usuarios:listar", async () => {
-  return await controllerUsuario.listar();
 })
 
 ipcMain.handle("usuarios:cadastrar", async (event, usuario) => {
@@ -110,13 +87,15 @@ ipcMain.handle("usuarios:removerUsuario", async (event, uuid) => {
   return await controllerUsuario.removerUsuario(uuid);
 })
 
+async function buscarUsuariosRemoto(){
+  const resultado = await apiremoto.fetch("usuarios");
+  await controllerUsuario.sincronizarAPIlocal(resultado.data.data);
+}
+buscarUsuariosRemoto()
+
 });
 
 
-=======
-});
-
->>>>>>> 8c9d4ed323edd566bd982517213d34adfde82106
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
